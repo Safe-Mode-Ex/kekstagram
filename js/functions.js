@@ -1,28 +1,24 @@
-const NUMBER_REGEXP = /\d+/g;
-
-const checkIsRightLength = (string, length) => string.length <= length;
-
-const checkIsPalinfrom = (string) => {
-  const normalizedString = string.replaceAll(' ', '').toLowerCase();
-  let reverserString = '';
-
-  for (let i = normalizedString.length - 1; i >= 0; i--) {
-    reverserString += normalizedString[i];
-  }
-  return normalizedString === reverserString;
+const getRandomInteger = (a, b) => {
+  const lower = Math.ceil(Math.min(a, b));
+  const upper = Math.floor(Math.max(a, b));
+  const result = Math.random() * (upper - lower + 1) + lower;
+  return Math.floor(result);
 };
 
-const exctactNaturalNumber = (string) => {
-  if (Number.isNaN(string)) {
-    throw Error('Type of parameter <string> is NaN');
-  }
+const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
-  const safeString = (typeof string === 'number') ? string.toString() : string;
-  const digitsString = safeString.match(NUMBER_REGEXP);
+const createRandomIdFromRangeGenerator = (min, max) => {
+  const previousValues = [];
 
-  if (!digitsString) {
-    return 'NaN';
-  }
-
-  return Number(digitsString.reduce((result, value) => result + value, ''));
+  return function () {
+    let currentValue = getRandomInteger(min, max);
+    if (previousValues.length >= (max - min + 1)) {
+      throw Error(`Перебраны все числа из диапазона от ${ min } до ${ max}`);
+    }
+    while (previousValues.includes(currentValue)) {
+      currentValue = getRandomInteger(min, max);
+    }
+    previousValues.push(currentValue);
+    return currentValue;
+  };
 };
