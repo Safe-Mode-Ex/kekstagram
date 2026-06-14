@@ -22,3 +22,5 @@ const createRandomIdFromRangeGenerator = (min, max) => {
     return currentValue;
   };
 };
+
+export {getRandomInteger, getRandomArrayElement, createRandomIdFromRangeGenerator};
