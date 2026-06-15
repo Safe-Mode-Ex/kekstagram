@@ -1,3 +1,6 @@
-import { renderPhotoCards } from './render';
+import {createPhotoCards} from './data';
+import {createPhotoCardElement} from './template';
+import {render} from './render';
 
-renderPhotoCards();
+const photoCards = createPhotoCards();
+render('.pictures', photoCards, createPhotoCardElement);
