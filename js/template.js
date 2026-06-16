@@ -16,16 +16,19 @@ const createPhotoCardElement = (photoCard) => {
   return photoCardEl;
 };
 
-const commentTemplateEl = document.querySelector('.social__comment');
+const createCommentElement = ({name, avatar, message}) => {
+  const commentEl = document.createElement('li');
+  commentEl.classList.add('social__comment');
 
-const createCommentElement = (comment) => {
-  const commentEl = commentTemplateEl.cloneNode(true);
-  const socialPictureEl = commentEl.querySelector('.social__picture');
-  const socialTextEl = commentEl.querySelector('.social__text');
-
-  socialPictureEl.src = comment.avatar;
-  socialTextEl.textContent = comment.message;
-
+  commentEl.innerHTML = `
+    <img
+      class="social__picture"
+      src="${avatar}"
+      alt="${name}"
+      width="35" height="35"
+    >
+    <p class="social__text">${message}</p>
+`;
   return commentEl;
 };
 
