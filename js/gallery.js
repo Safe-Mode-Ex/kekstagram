@@ -19,9 +19,9 @@ const populateBigPictureImgCreator = (photoCards, bigPictureEl) => {
     }
 
     const nextCommentsLength = visibleCommentsLength + MAX_VISIBLE_COMMENTS_COUNT;
-    const hasNextChunk = nextCommentsLength <= photoCard.comments.length;
+    const hasNextChunk = nextCommentsLength < photoCard.comments.length;
 
-    visibleCommentsLength = hasNextChunk
+    visibleCommentsLength = visibleCommentsLength + MAX_VISIBLE_COMMENTS_COUNT
       ? nextCommentsLength
       : photoCard.comments.length;
 

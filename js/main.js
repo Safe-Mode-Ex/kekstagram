@@ -8,7 +8,7 @@ const photoCardsContainerEl = document.querySelector('.pictures');
 const bigPictureEl = document.querySelector('.big-picture');
 
 const photoCards = createPhotoCards();
-const populateBigPictureImg = () => populateBigPictureImgCreator(photoCards, bigPictureEl);
+const populateBigPictureImg = populateBigPictureImgCreator(photoCards, bigPictureEl);
 
 render(photoCardsContainerEl, photoCards, createPhotoCardElement);
-initializeModal(photoCardsContainerEl, bigPictureEl, '.picture', populateBigPictureImg());
+initializeModal(photoCardsContainerEl, bigPictureEl, '.picture', populateBigPictureImg);
