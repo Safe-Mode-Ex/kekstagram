@@ -1,8 +1,8 @@
 import { CLASS_HIDDEN, CLASS_MODAL_OPEN } from './const';
 import { isEscapeKey } from './utils';
 
-const initializeModal = (containerEl, modalEl, targetSelector, onModalOpen) => {
-  const handleModalOpen = (evt) => {
+const initializeModal = (containerEl, modalEl, targetSelector, modalOpenCb) => {
+  const onModalOpen = (evt) => {
     evt.preventDefault();
 
     if (!evt.target.closest(targetSelector)) {
@@ -38,14 +38,14 @@ const initializeModal = (containerEl, modalEl, targetSelector, onModalOpen) => {
     }
 
     toggleModal();
-    onModalOpen(evt.target);
+    modalOpenCb(evt.target);
     closeBtnEl.addEventListener('click', onModalCloseClick);
 
     document.addEventListener('keydown', onModalCloseKeyDown);
     document.body.classList.add(CLASS_MODAL_OPEN);
   };
 
-  containerEl.addEventListener('click', handleModalOpen);
+  containerEl.addEventListener('click', onModalOpen);
 };
 
 export {initializeModal};
