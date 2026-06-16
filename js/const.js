@@ -18,3 +18,4 @@ export const COMMENTATORS_NAMES = ['Артём', 'Мария'];
 
 export const CLASS_HIDDEN = 'hidden';
 export const CLASS_MODAL_OPEN = 'modal-open';
+export const MAX_VISIBLE_COMMENTS_COUNT = 5;

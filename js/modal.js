@@ -24,6 +24,7 @@ const initializeModal = (containerEl, modalEl, targetSelector, modalOpenCb) => {
       document.body.classList.remove(CLASS_MODAL_OPEN);
       closeBtnEl.removeEventListener('click', onModalCloseClick);
       document.removeEventListener('keydown', onModalCloseKeyDown);
+      modalOpenCb.clean();
     };
 
     function onModalCloseClick (closeEvt) {
