@@ -1,6 +1,11 @@
 import {createPhotoCards} from './data';
 import {createPhotoCardElement} from './template';
 import {render} from './render';
+import { initializeModal } from './modal';
 
 const photoCards = createPhotoCards();
-render('.pictures', photoCards, createPhotoCardElement);
+const photoCardsContainerEl = document.querySelector('.pictures');
+const bigPictureEl = document.querySelector('.big-picture');
+
+render(photoCardsContainerEl, photoCards, createPhotoCardElement);
+initializeModal(photoCardsContainerEl, bigPictureEl);

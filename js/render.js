@@ -1,5 +1,4 @@
-const render = (containerSelector, itemsToRender, renderCb) => {
-  const containerEl = document.querySelector(containerSelector);
+const render = (containerEl, itemsToRender, renderCb) => {
   const fragment = document.createDocumentFragment();
 
   itemsToRender.forEach((item) => {
