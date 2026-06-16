@@ -18,12 +18,12 @@ const populateBigPictureImgCreator = (photoCards, bigPictureEl) => {
       return;
     }
 
+    const prevCommentsLength = visibleCommentsLength;
     const nextCommentsLength = visibleCommentsLength + MAX_VISIBLE_COMMENTS_COUNT;
     const hasNextChunk = nextCommentsLength < photoCard.comments.length;
 
-    visibleCommentsLength = visibleCommentsLength + MAX_VISIBLE_COMMENTS_COUNT
-      ? nextCommentsLength
-      : photoCard.comments.length;
+    visibleCommentsLength = Math.min(nextCommentsLength, photoCard.comments.length);
+    socialCommentShownCountEl.textContent = visibleCommentsLength;
 
     if (!hasNextChunk) {
       commentsLoaderEl.classList.add(CLASS_HIDDEN);
@@ -31,11 +31,9 @@ const populateBigPictureImgCreator = (photoCards, bigPictureEl) => {
 
     render(
       socialCommentsEl,
-      photoCard.comments.slice(0, visibleCommentsLength),
+      photoCard.comments.slice(prevCommentsLength, visibleCommentsLength),
       createCommentElement,
-      true,
     );
-    socialCommentShownCountEl.textContent = visibleCommentsLength;
   };
 
   const creator = (photoCardEl) => {
@@ -67,7 +65,12 @@ const populateBigPictureImgCreator = (photoCards, bigPictureEl) => {
     const socialCaptionEl = bigPictureEl.querySelector('.social__caption');
     socialCaptionEl.textContent = photoCard.description;
 
-    render(socialCommentsEl, photoCard.comments.slice(0, visibleCommentsLength), createCommentElement, true);
+    render(
+      socialCommentsEl,
+      photoCard.comments.slice(0, visibleCommentsLength),
+      createCommentElement,
+      true
+    );
   };
 
   creator.clean = () => {
