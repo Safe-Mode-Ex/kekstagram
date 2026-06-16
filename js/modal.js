@@ -1,25 +1,48 @@
-const initializeModal = (containerEl, modalEl) => {
+import { CLASS_HIDDEN, CLASS_MODAL_OPEN } from './const';
+import { isEscapeKey } from './utils';
+
+const initializeModal = (containerEl, modalEl, targetSelector, onModalOpen) => {
   const handleModalOpen = (evt) => {
     evt.preventDefault();
 
+    if (!evt.target.closest(targetSelector)) {
+      return;
+    }
+
+    const closeBtnEl = modalEl.querySelector('.cancel');
+
     const toggleModal = () => {
-      if (modalEl.classList.contains('hidden')) {
-        modalEl.classList.remove('hidden');
+      if (modalEl.classList.contains(CLASS_HIDDEN)) {
+        modalEl.classList.remove(CLASS_HIDDEN);
       } else {
-        modalEl.classList.add('hidden');
+        modalEl.classList.add(CLASS_HIDDEN);
       }
     };
 
-    toggleModal();
-
-    const closeBtnEl = modalEl.querySelector('.cancel');
-    const handleModalClose = (closeEvt) => {
-      closeEvt.preventDefault();
+    const closeModal = () => {
       toggleModal();
-      closeEvt.currentTarget.removeEventListener('click', handleModalClose);
+      document.body.classList.remove(CLASS_MODAL_OPEN);
+      closeBtnEl.removeEventListener('click', onModalCloseClick);
+      document.removeEventListener('keydown', onModalCloseKeyDown);
     };
 
-    closeBtnEl.addEventListener('click', handleModalClose);
+    function onModalCloseClick (closeEvt) {
+      closeEvt.preventDefault();
+      closeModal(closeEvt);
+    }
+
+    function onModalCloseKeyDown (closeEvt) {
+      if (isEscapeKey(closeEvt)) {
+        closeModal();
+      }
+    }
+
+    toggleModal();
+    onModalOpen(evt.target);
+    closeBtnEl.addEventListener('click', onModalCloseClick);
+
+    document.addEventListener('keydown', onModalCloseKeyDown);
+    document.body.classList.add(CLASS_MODAL_OPEN);
   };
 
   containerEl.addEventListener('click', handleModalOpen);

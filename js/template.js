@@ -11,8 +11,22 @@ const createPhotoCardElement = (photoCard) => {
   photoCardImageEl.alt = photoCard.description;
   photoCardCommentsEl.textContent = photoCard.comments.length;
   photoCardLikesEl.textContent = photoCard.likes;
+  photoCardEl.dataset.id = photoCard.id;
 
   return photoCardEl;
 };
 
-export {createPhotoCardElement};
+const commentTemplateEl = document.querySelector('.social__comment');
+
+const createCommentElement = (comment) => {
+  const commentEl = commentTemplateEl.cloneNode(true);
+  const socialPictureEl = commentEl.querySelector('.social__picture');
+  const socialTextEl = commentEl.querySelector('.social__text');
+
+  socialPictureEl.src = comment.avatar;
+  socialTextEl.textContent = comment.message;
+
+  return commentEl;
+};
+
+export {createPhotoCardElement, createCommentElement};

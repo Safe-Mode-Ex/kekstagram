@@ -31,8 +31,10 @@ const createComment = () => {
   };
 };
 
+const getPhotoCardId = createRandomIdFromRangeGenerator(1, MAX_PHOTOS_COUNT);
+
 const createPhotoCard = () => {
-  const id = getRandomInteger(1, MAX_PHOTOS_COUNT);
+  const id = getPhotoCardId();
   const commentsCount = getRandomInteger(0, MAX_COMMENTS_COUNT);
   const comments = Array.from({length: commentsCount}, createComment);
 

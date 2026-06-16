@@ -15,3 +15,6 @@ export const MESSAGE_SENTENCIES = [
 ];
 
 export const COMMENTATORS_NAMES = ['Артём', 'Мария'];
+
+export const CLASS_HIDDEN = 'hidden';
+export const CLASS_MODAL_OPEN = 'modal-open';
