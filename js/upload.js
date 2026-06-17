@@ -1,5 +1,17 @@
-import { CLASS_HIDDEN, DECIMAL_RADIX, MAX_SCALE_VALUE, MIN_SCALE_VALUE, NOT_FOUND_INDEX, NUMBER_REGEXP, SCALE_STEP } from './const';
-import { validate } from './utils';
+import {
+  CLASS_HIDDEN,
+  DECIMAL_RADIX,
+  MAX_SCALE_VALUE,
+  MIN_SCALE_VALUE,
+  NUMBER_REGEXP,
+  SCALE_STEP
+} from './const';
+import {
+  setElementVisibility,
+  setFilterProperty,
+  setTransformProperty,
+  validate
+} from './utils';
 
 const effectMap = {
   chrome: {
@@ -64,8 +76,6 @@ const populateUploadImageCreator = (imgUploadInputEl, imgUploadOverlayEl, imgUpl
     target.classList.contains('scale__control--bigger');
 
   const predicateEffectTarget = (target) => target.name === 'effect';
-
-  let scaleControlValue;
   const changeEvent = new Event('change');
 
   const onScaleValueChange = (evt) => {
@@ -75,7 +85,7 @@ const populateUploadImageCreator = (imgUploadInputEl, imgUploadOverlayEl, imgUpl
       return;
     }
 
-    scaleControlValue = parseInt(scaleControlValueEl.value, DECIMAL_RADIX);
+    const scaleControlValue = parseInt(scaleControlValueEl.value, DECIMAL_RADIX);
 
     const currentScaleValue = evt.target.classList.contains('scale__control--smaller')
       ? scaleControlValue - SCALE_STEP
@@ -88,18 +98,8 @@ const populateUploadImageCreator = (imgUploadInputEl, imgUploadOverlayEl, imgUpl
     scaleControlValueEl.dispatchEvent(changeEvent);
   };
 
-  const onScaleControlValueChange = (evt) => {
-    const currentScaleValue = parseInt(evt.target.value, DECIMAL_RADIX) / 100;
-    let transformProp = imgUploadPreviewImageEl.style.transform;
-    const scaleIndex = transformProp.indexOf('scale');
-
-    if (scaleIndex !== NOT_FOUND_INDEX) {
-      const scaleParam = transformProp
-        .slice(scaleIndex, transformProp.indexOf(')') + 1, scaleIndex);
-      transformProp = transformProp.replace(scaleParam, '');
-    }
-
-    imgUploadPreviewImageEl.style.transform = `${transformProp} scale(${currentScaleValue})`;
+  const onScaleControlValueChange = ({target}) => {
+    setTransformProperty(imgUploadPreviewImageEl, 'scale', target.value);
   };
 
   const onEffectChange = ({target}) => {
@@ -110,21 +110,21 @@ const populateUploadImageCreator = (imgUploadInputEl, imgUploadOverlayEl, imgUpl
     const {value: effect} = target;
 
     if (effect === 'none') {
-      effectLevelEl.classList.add(CLASS_HIDDEN);
-      imgUploadPreviewImageEl.style = '';
+      setElementVisibility(effectLevelEl, true);
+      setFilterProperty(imgUploadPreviewImageEl, '');
       return;
     }
 
     const {range, step, filter, unit} = effectMap[effect];
     effectLevelSliderEl.noUiSlider.updateOptions({range, step, start: range.max});
-    effectLevelEl.classList.remove(CLASS_HIDDEN);
-    imgUploadPreviewImageEl.style = `filter: ${filter}(${range.max}${unit})`;
+    setElementVisibility(effectLevelEl, false);
+    setFilterProperty(imgUploadPreviewImageEl, `${filter}(${range.max}${unit})`);
   };
 
-  effectLevelEl.classList.add(CLASS_HIDDEN);
+  setElementVisibility(effectLevelEl, true);
 
   const creator = () => {
-    scaleControlValue = parseInt(scaleControlValueEl.value, DECIMAL_RADIX);
+    const scaleControlValue = parseInt(scaleControlValueEl.value, DECIMAL_RADIX);
     scaleControlSmallerEl.disabled = scaleControlValue === MIN_SCALE_VALUE;
     scaleControlBiggerEl.disabled = scaleControlValue === MAX_SCALE_VALUE;
 
@@ -148,7 +148,7 @@ const populateUploadImageCreator = (imgUploadInputEl, imgUploadOverlayEl, imgUpl
       const filterValue = evt[0];
 
       effectLevelEl.value = filterValue;
-      imgUploadPreviewImageEl.style.filter = filter.replace(NUMBER_REGEXP, filterValue);
+      setFilterProperty(imgUploadPreviewImageEl, filter.replace(NUMBER_REGEXP, filterValue));
     });
 
     effectsListEl.addEventListener('change', onEffectChange);
