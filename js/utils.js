@@ -25,6 +25,8 @@ const createRandomIdFromRangeGenerator = (min, max) => {
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
+export const validate = (target, predicate) => predicate(target);
+
 export {
   getRandomInteger,
   getRandomArrayElement,

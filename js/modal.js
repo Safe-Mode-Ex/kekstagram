@@ -1,13 +1,13 @@
 import { CLASS_HIDDEN, CLASS_MODAL_OPEN } from './const';
-import { isEscapeKey } from './utils';
+import { isEscapeKey, validate } from './utils';
 
-const initializeModal = (containerEl, modalEl, targetSelector, modalOpenCb) => {
+const initializeModal = ({eventName, triggerEl, modalEl, predicate, modalOpenCb}) => {
   const onModalOpen = (evt) => {
-    evt.preventDefault();
-
-    if (!evt.target.closest(targetSelector)) {
+    if (!validate(evt.target, predicate)) {
       return;
     }
+
+    evt.preventDefault();
 
     const closeBtnEl = modalEl.querySelector('.cancel');
 
@@ -24,7 +24,9 @@ const initializeModal = (containerEl, modalEl, targetSelector, modalOpenCb) => {
       document.body.classList.remove(CLASS_MODAL_OPEN);
       closeBtnEl.removeEventListener('click', onModalCloseClick);
       document.removeEventListener('keydown', onModalCloseKeyDown);
-      modalOpenCb.clean();
+      if (modalOpenCb) {
+        modalOpenCb.clean();
+      }
     };
 
     function onModalCloseClick (closeEvt) {
@@ -39,14 +41,16 @@ const initializeModal = (containerEl, modalEl, targetSelector, modalOpenCb) => {
     }
 
     toggleModal();
-    modalOpenCb(evt.target);
     closeBtnEl.addEventListener('click', onModalCloseClick);
+    if (modalOpenCb) {
+      modalOpenCb(evt.target);
+    }
 
     document.addEventListener('keydown', onModalCloseKeyDown);
     document.body.classList.add(CLASS_MODAL_OPEN);
   };
 
-  containerEl.addEventListener('click', onModalOpen);
+  triggerEl.addEventListener(eventName, onModalOpen);
 };
 
 export {initializeModal};
