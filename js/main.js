@@ -25,7 +25,11 @@ const imgUploadFormEl = photoCardsContainerEl.querySelector('.img-upload__form')
 const imgUploadInputEl = imgUploadFormEl.querySelector('.img-upload__input');
 const imgUploadOverlayEl = imgUploadFormEl.querySelector('.img-upload__overlay');
 const predicateUploadTarget = (target) => Boolean(target.files[0]);
-const populateUplodeImage = populateUploadImageCreator(imgUploadInputEl, imgUploadOverlayEl);
+const populateUplodeImage = populateUploadImageCreator(
+  imgUploadInputEl,
+  imgUploadOverlayEl,
+  imgUploadFormEl,
+);
 
 initializeModal({
   eventName: 'change',

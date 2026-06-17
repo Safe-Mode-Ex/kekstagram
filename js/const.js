@@ -24,3 +24,4 @@ export const MIN_SCALE_VALUE = 25;
 export const SCALE_STEP = 25;
 export const DECIMAL_RADIX = 10;
 export const NUMBER_REGEXP = /\d+(?:\.\d+)?/;
+export const NOT_FOUND_INDEX = -1;
