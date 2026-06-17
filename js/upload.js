@@ -15,6 +15,7 @@ const populateUploadImageCreator = (imgUploadInputEl, imgUploadOverlayEl) => {
     const scaleControlBiggerEl = scaleEl.querySelector('.scale__control--bigger');
 
     let scaleControlValue = parseInt(scaleControlValueEl.value, DECIMAL_RADIX);
+    const changeEvent = new Event('change');
 
     if (scaleControlValue === MAX_SCALE_VALUE) {
       scaleControlBiggerEl.disabled = true;
@@ -40,6 +41,13 @@ const populateUploadImageCreator = (imgUploadInputEl, imgUploadOverlayEl) => {
       scaleControlValueEl.value = `${currentScaleValue}%`;
       scaleControlBiggerEl.disabled = currentScaleValue === MAX_SCALE_VALUE;
       scaleControlSmallerEl.disabled = currentScaleValue === MIN_SCALE_VALUE;
+
+      scaleControlValueEl.dispatchEvent(changeEvent);
+    });
+
+    scaleControlValueEl.addEventListener('change', (evt) => {
+      const currentScaleValue = parseInt(evt.target.value, DECIMAL_RADIX) / 100;
+      imgUploadPreviewImageEl.style = `transform: scale(${currentScaleValue})`;
     });
 
     imgUploadPreviewImageEl.src = URL.createObjectURL(imgUploadInputEl.files[0]);
