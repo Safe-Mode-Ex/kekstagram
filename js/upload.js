@@ -3,10 +3,22 @@ import { validate } from './utils';
 
 const populateUploadImageCreator = (imgUploadInputEl, imgUploadOverlayEl) => {
   const imgUploadPreviewImageEl = imgUploadOverlayEl.querySelector('.img-upload__preview img');
+  const effectLevelEl = imgUploadOverlayEl.querySelector('.effect-level');
+  const effectLevelSliderEl = imgUploadOverlayEl.querySelector('.effect-level__slider');
 
   const predicateScaleControl = (target) =>
     target.classList.contains('scale__control--smaller') ||
-  target.classList.contains('scale__control--bigger');
+    target.classList.contains('scale__control--bigger');
+
+  const effectLevel = noUiSlider
+    .create(effectLevelSliderEl, {
+      start: 0,
+      connect: 'lower',
+      range: {
+        'min': 0,
+        'max': 1
+      },
+    });
 
   return () => {
     const scaleEl = imgUploadOverlayEl.querySelector('.scale');
@@ -51,6 +63,10 @@ const populateUploadImageCreator = (imgUploadInputEl, imgUploadOverlayEl) => {
     });
 
     imgUploadPreviewImageEl.src = URL.createObjectURL(imgUploadInputEl.files[0]);
+
+    effectLevel.on('update', (evt) => {
+      effectLevelEl.value = evt[0];
+    });
   };
 };
 
