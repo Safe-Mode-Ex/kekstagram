@@ -1,4 +1,4 @@
-import { CLASS_HIDDEN, DECIMAL_RADIX, MAX_SCALE_VALUE, MIN_SCALE_VALUE, SCALE_STEP } from './const';
+import { CLASS_HIDDEN, DECIMAL_RADIX, MAX_SCALE_VALUE, MIN_SCALE_VALUE, NUMBER_REGEXP, SCALE_STEP } from './const';
 import { validate } from './utils';
 
 const effectMap = {
@@ -118,7 +118,11 @@ const populateUploadImageCreator = (imgUploadInputEl, imgUploadOverlayEl) => {
     imgUploadPreviewImageEl.src = URL.createObjectURL(imgUploadInputEl.files[0]);
 
     effectLevel.on('update', (evt) => {
-      effectLevelEl.value = evt[0];
+      const filter = imgUploadPreviewImageEl.style.filter;
+      const filterValue = evt[0];
+
+      effectLevelEl.value = filterValue;
+      imgUploadPreviewImageEl.style.filter = filter.replace(NUMBER_REGEXP, filterValue);
     });
 
     effectsListEl.addEventListener('change', ({target}) => {
