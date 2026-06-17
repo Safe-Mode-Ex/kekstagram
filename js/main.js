@@ -1,8 +1,9 @@
-import {createPhotoCards} from './data';
-import {createPhotoCardElement} from './template';
-import {render} from './render';
+import { createPhotoCards } from './data';
+import { createPhotoCardElement } from './template';
+import { render } from './render';
 import { initializeModal } from './modal';
 import { populateBigPictureImgCreator } from './gallery';
+import { populateUploadImageCreator } from './upload';
 
 const photoCardsContainerEl = document.querySelector('.pictures');
 const bigPictureEl = document.querySelector('.big-picture');
@@ -23,12 +24,13 @@ initializeModal({
 const imgUploadFormEl = photoCardsContainerEl.querySelector('.img-upload__form');
 const imgUploadInputEl = imgUploadFormEl.querySelector('.img-upload__input');
 const imgUploadOverlayEl = imgUploadFormEl.querySelector('.img-upload__overlay');
-
 const predicateUploadTarget = (target) => Boolean(target.files[0]);
+const populateUplodeImage = populateUploadImageCreator(imgUploadInputEl, imgUploadOverlayEl);
 
 initializeModal({
   eventName: 'change',
   triggerEl: imgUploadInputEl,
   modalEl: imgUploadOverlayEl,
   predicate: predicateUploadTarget,
+  modalOpenCb: populateUplodeImage,
 });

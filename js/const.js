@@ -19,3 +19,7 @@ export const COMMENTATORS_NAMES = ['Артём', 'Мария'];
 export const CLASS_HIDDEN = 'hidden';
 export const CLASS_MODAL_OPEN = 'modal-open';
 export const MAX_VISIBLE_COMMENTS_COUNT = 5;
+export const MAX_SCALE_VALUE = 100;
+export const MIN_SCALE_VALUE = 25;
+export const SCALE_STEP = 25;
+export const DECIMAL_RADIX = 10;
