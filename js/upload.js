@@ -1,24 +1,77 @@
-import { DECIMAL_RADIX, MAX_SCALE_VALUE, MIN_SCALE_VALUE, SCALE_STEP } from './const';
+import { CLASS_HIDDEN, DECIMAL_RADIX, MAX_SCALE_VALUE, MIN_SCALE_VALUE, SCALE_STEP } from './const';
 import { validate } from './utils';
+
+const effectMap = {
+  chrome: {
+    filter: 'grayscale',
+    range: {
+      min: 0,
+      max: 1,
+    },
+    step: 0.1,
+    unit: '',
+  },
+  sepia: {
+    filter: 'sepia',
+    range: {
+      min: 0,
+      max: 1,
+    },
+    step: 0.1,
+    unit: '',
+  },
+  marvin: {
+    filter: 'invert',
+    range: {
+      min: 0,
+      max: 100,
+    },
+    step: 1,
+    unit: '%',
+  },
+  phobos: {
+    filter: 'blur',
+    range: {
+      min: 0,
+      max: 3,
+    },
+    step: 0.1,
+    unit: 'px',
+  },
+  heat: {
+    filter: 'brightness',
+    range: {
+      min: 1,
+      max: 3,
+    },
+    step: 0.1,
+    unit: '',
+  },
+};
 
 const populateUploadImageCreator = (imgUploadInputEl, imgUploadOverlayEl) => {
   const imgUploadPreviewImageEl = imgUploadOverlayEl.querySelector('.img-upload__preview img');
   const effectLevelEl = imgUploadOverlayEl.querySelector('.effect-level');
   const effectLevelSliderEl = imgUploadOverlayEl.querySelector('.effect-level__slider');
+  const effectsListEl = imgUploadOverlayEl.querySelector('.effects__list');
 
   const predicateScaleControl = (target) =>
     target.classList.contains('scale__control--smaller') ||
     target.classList.contains('scale__control--bigger');
 
+  const predicateEffectTarget = (target) => target.name === 'effect';
+
   const effectLevel = noUiSlider
     .create(effectLevelSliderEl, {
-      start: 0,
+      start: 1,
       connect: 'lower',
       range: {
-        'min': 0,
-        'max': 1
+        min: 0,
+        max: 1,
       },
     });
+
+  effectLevelEl.classList.add(CLASS_HIDDEN);
 
   return () => {
     const scaleEl = imgUploadOverlayEl.querySelector('.scale');
@@ -66,6 +119,25 @@ const populateUploadImageCreator = (imgUploadInputEl, imgUploadOverlayEl) => {
 
     effectLevel.on('update', (evt) => {
       effectLevelEl.value = evt[0];
+    });
+
+    effectsListEl.addEventListener('change', ({target}) => {
+      if (!validate(target, predicateEffectTarget)) {
+        return;
+      }
+
+      const {value: effect} = target;
+
+      if (effect === 'none') {
+        effectLevelEl.classList.add(CLASS_HIDDEN);
+        imgUploadPreviewImageEl.style = '';
+        return;
+      }
+
+      const {range, step, filter, unit} = effectMap[effect];
+      effectLevelSliderEl.noUiSlider.updateOptions({range, step, start: range.max});
+      effectLevelEl.classList.remove(CLASS_HIDDEN);
+      imgUploadPreviewImageEl.style = `filter: ${filter}(${range.max}${unit})`;
     });
   };
 };
