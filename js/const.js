@@ -25,3 +25,6 @@ export const SCALE_STEP = 25;
 export const DECIMAL_RADIX = 10;
 export const NUMBER_REGEXP = /\d+(?:\.\d+)?/;
 export const NOT_FOUND_INDEX = -1;
+export const HASH_TAG_REGEXP = /^#[a-zа-яё0-9]{1,19}$/i;
+export const HASH_TAGS_MAX_COUNT = 5;
+export const COMMENT_MAX_LENGHT = 140;
