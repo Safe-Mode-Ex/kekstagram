@@ -1,14 +1,40 @@
-import {createPhotoCards} from './data';
-import {createPhotoCardElement} from './template';
-import {render} from './render';
+import { createPhotoCards } from './data';
+import { createPhotoCardElement } from './template';
+import { render } from './render';
 import { initializeModal } from './modal';
 import { populateBigPictureImgCreator } from './gallery';
+import { populateUploadImageCreator } from './upload/upload';
 
 const photoCardsContainerEl = document.querySelector('.pictures');
 const bigPictureEl = document.querySelector('.big-picture');
 
 const photoCards = createPhotoCards();
 const populateBigPictureImg = populateBigPictureImgCreator(photoCards, bigPictureEl);
+const predicatePictureTarget = (target) => target.closest('.picture');
 
 render(photoCardsContainerEl, photoCards, createPhotoCardElement);
-initializeModal(photoCardsContainerEl, bigPictureEl, '.picture', populateBigPictureImg);
+initializeModal({
+  eventName: 'click',
+  triggerEl: photoCardsContainerEl,
+  modalEl: bigPictureEl,
+  predicate: predicatePictureTarget,
+  modalOpenCb: populateBigPictureImg
+});
+
+const imgUploadFormEl = photoCardsContainerEl.querySelector('.img-upload__form');
+const imgUploadInputEl = imgUploadFormEl.querySelector('.img-upload__input');
+const imgUploadOverlayEl = imgUploadFormEl.querySelector('.img-upload__overlay');
+const predicateUploadTarget = (target) => Boolean(target.files[0]);
+const populateUplodeImage = populateUploadImageCreator(
+  imgUploadInputEl,
+  imgUploadOverlayEl,
+  imgUploadFormEl,
+);
+
+initializeModal({
+  eventName: 'change',
+  triggerEl: imgUploadInputEl,
+  modalEl: imgUploadOverlayEl,
+  predicate: predicateUploadTarget,
+  modalOpenCb: populateUplodeImage,
+});
