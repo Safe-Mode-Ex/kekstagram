@@ -48,7 +48,7 @@ const setFilterProperty = (element, value) => {
 };
 
 const setElementVisibility = (element, isShown) => {
-  const method = isShown ? 'add' : 'remove';
+  const method = isShown ? 'remove' : 'add';
   element.classList[method](CLASS_HIDDEN);
 };
 
