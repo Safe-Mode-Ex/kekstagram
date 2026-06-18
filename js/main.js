@@ -3,7 +3,7 @@ import { createPhotoCardElement } from './template';
 import { render } from './render';
 import { initializeModal } from './modal';
 import { populateBigPictureImgCreator } from './gallery';
-import { populateUploadImageCreator } from './upload';
+import { populateUploadImageCreator } from './upload/upload';
 
 const photoCardsContainerEl = document.querySelector('.pictures');
 const bigPictureEl = document.querySelector('.big-picture');
