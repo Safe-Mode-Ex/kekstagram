@@ -710,6 +710,11 @@ main {
   border-radius: 5px;
 }
 
+.img-upload__field-wrapper {
+  margin: 0 auto;
+  max-width: 450px;
+}
+
 .img-upload__field-wrapper--error {
   background-color: #fd4d4b;
   color:#ffffff;
