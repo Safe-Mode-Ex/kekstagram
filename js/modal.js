@@ -1,5 +1,5 @@
 import { CLASS_HIDDEN, CLASS_MODAL_OPEN } from './const';
-import { isEscapeKey, isFormFieldFocused, validate } from './utils';
+import { isEscapeKey, isFormFieldFocused, notificationState, validate } from './utils';
 
 const initializeModal = ({eventName, triggerEl, modalEl, predicate, modalOpenCb}) => {
   const onModalOpen = (evt) => {
@@ -35,7 +35,7 @@ const initializeModal = ({eventName, triggerEl, modalEl, predicate, modalOpenCb}
     }
 
     function onModalCloseKeyDown (closeEvt) {
-      if (isEscapeKey(closeEvt) && !isFormFieldFocused(closeEvt)) {
+      if (isEscapeKey(closeEvt) && !isFormFieldFocused(closeEvt) && !notificationState.isOpen) {
         closeModal();
       }
     }
@@ -43,7 +43,7 @@ const initializeModal = ({eventName, triggerEl, modalEl, predicate, modalOpenCb}
     toggleModal();
     closeBtnEl.addEventListener('click', onModalCloseClick);
     if (modalOpenCb) {
-      modalOpenCb(evt.target);
+      modalOpenCb(evt.target, closeModal);
     }
 
     document.addEventListener('keydown', onModalCloseKeyDown);

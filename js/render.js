@@ -1,7 +1,7 @@
-const render = (containerEl, itemsToRender, renderCb, rewrite = false) => {
+const render = (containerEl, renderCb, itemsToRender = [''], rewrite = false) => {
   const fragment = document.createDocumentFragment();
 
-  itemsToRender.forEach((item) => {
+  itemsToRender?.forEach((item) => {
     const itemEl = renderCb(item);
     fragment.appendChild(itemEl);
   });
