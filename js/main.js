@@ -4,6 +4,7 @@ import { initializeModal } from './modal';
 import { populateBigPictureImgCreator } from './gallery';
 import { populateUploadImageCreator } from './upload/upload';
 import { getData } from './api';
+import { cleanError } from './utils';
 
 const photoCardsContainerEl = document.querySelector('.pictures');
 const bigPictureEl = document.querySelector('.big-picture');
@@ -22,6 +23,7 @@ getData().then((photoCards) => {
   });
 }).catch(() => {
   render(document.body, createDataErrorElement);
+  cleanError();
 });
 
 const imgUploadFormEl = photoCardsContainerEl.querySelector('.img-upload__form');

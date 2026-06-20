@@ -1,4 +1,4 @@
-import { CLASS_HIDDEN, DECIMAL_RADIX, NOT_FOUND_INDEX } from './const';
+import { CLASS_HIDDEN, DECIMAL_RADIX, ERROR_TIMEOUT, NOT_FOUND_INDEX } from './const';
 
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -53,6 +53,14 @@ const setElementVisibility = (element, isShown) => {
   element.classList[method](CLASS_HIDDEN);
 };
 
+const cleanError = () => {
+  const dataErrorTimeout = setTimeout(() => {
+    const dataErrorEl = document.querySelector('.data-error');
+    dataErrorEl.remove();
+    clearTimeout(dataErrorTimeout);
+  }, ERROR_TIMEOUT);
+};
+
 export {
   getRandomInteger,
   getRandomArrayElement,
@@ -63,4 +71,5 @@ export {
   setTransformProperty,
   setFilterProperty,
   setElementVisibility,
+  cleanError,
 };

@@ -11,3 +11,4 @@ export const HASH_TAG_REGEXP = /^#[a-zа-яё0-9]{1,19}$/i;
 export const HASH_TAGS_MAX_COUNT = 5;
 export const COMMENT_MAX_LENGHT = 140;
 export const BASE_URL = 'https://32.javascript.htmlacademy.pro/kekstagram';
+export const ERROR_TIMEOUT = 5000;
