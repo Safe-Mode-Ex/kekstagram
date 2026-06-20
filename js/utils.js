@@ -53,6 +53,8 @@ const setElementVisibility = (element, isShown) => {
   element.classList[method](CLASS_HIDDEN);
 };
 
+const isElementVisible = (element) => element.classList.contains(CLASS_HIDDEN);
+
 const cleanError = () => {
   const dataErrorTimeout = setTimeout(() => {
     const dataErrorEl = document.querySelector('.data-error');
@@ -98,6 +100,7 @@ export {
   setTransformProperty,
   setFilterProperty,
   setElementVisibility,
+  isElementVisible,
   cleanError,
   notificationState,
   debounce,
