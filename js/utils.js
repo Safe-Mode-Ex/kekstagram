@@ -26,7 +26,7 @@ const createRandomIdFromRangeGenerator = (min, max) => {
 };
 
 const isEscapeKey = ({key}) => key === 'Escape';
-const isFormFieldFocused = ({target}) => target.tagName === 'INPUT' || target.tagName === 'TEXTAREA';
+const isFormFieldFocused = ({target}) => target.type === 'text' || target.tagName === 'TEXTAREA';
 
 const validate = (target, predicate) => predicate(target);
 
@@ -61,6 +61,10 @@ const cleanError = () => {
   }, ERROR_TIMEOUT);
 };
 
+const notificationState = {
+  isOpen: false,
+};
+
 export {
   getRandomInteger,
   getRandomArrayElement,
@@ -72,4 +76,5 @@ export {
   setFilterProperty,
   setElementVisibility,
   cleanError,
+  notificationState,
 };

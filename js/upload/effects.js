@@ -31,8 +31,10 @@ const setupEffects = (imgUploadOverlayEl, imgUploadPreviewImageEl) => {
 
   return {
     initializeEffects: () => {
-      noUiSlider
-        .create(effectLevelSliderEl, sliderInitialOptions);
+      if (!effectLevelSliderEl.noUiSlider) {
+        noUiSlider
+          .create(effectLevelSliderEl, sliderInitialOptions);
+      }
 
       effectLevelSliderEl.noUiSlider.on('update', (evt) => {
         const filter = imgUploadPreviewImageEl.style.filter;

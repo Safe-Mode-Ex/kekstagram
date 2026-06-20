@@ -44,7 +44,10 @@ const setupValidation = (imgUploadFormEl) => {
       hashTagInputEl.addEventListener('change', onHashTagChange);
       commentTextEl.addEventListener('input', onCommentInput);
     },
-    hasErrors: () => validation.getErrors()?.length,
+    hasErrors: () => {
+      validation.validate();
+      return validation.getErrors()?.length;
+    },
     destroyValidation: () => {
       validation.destroy();
       hashTagInputEl.removeEventListener('change', onHashTagChange);
