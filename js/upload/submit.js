@@ -12,6 +12,9 @@ const setupSubmit = (imgUploadFormEl, hasErrors) => {
       return;
     }
 
+    const submitBtnEl = imgUploadFormEl.querySelector('.img-upload__submit');
+    submitBtnEl.disabled = true;
+
     sendData(new FormData(imgUploadFormEl))
       .then(() => {
         if (closeModal) {
@@ -22,6 +25,9 @@ const setupSubmit = (imgUploadFormEl, hasErrors) => {
       })
       .catch(() => {
         render(document.body, () => createResponseElement(false));
+      })
+      .finally(() => {
+        submitBtnEl.disabled = false;
       });
   };
 
