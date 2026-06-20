@@ -31,8 +31,8 @@ const populateBigPictureImgCreator = (photoCards, bigPictureEl) => {
 
     render(
       socialCommentsEl,
-      photoCard.comments.slice(prevCommentsLength, visibleCommentsLength),
       createCommentElement,
+      photoCard.comments.slice(prevCommentsLength, visibleCommentsLength),
     );
   };
 
@@ -67,8 +67,8 @@ const populateBigPictureImgCreator = (photoCards, bigPictureEl) => {
 
     render(
       socialCommentsEl,
-      photoCard.comments.slice(0, visibleCommentsLength),
       createCommentElement,
+      photoCard.comments.slice(0, visibleCommentsLength),
       true
     );
   };

@@ -1,4 +1,4 @@
-const BASE_URL = 'https://32.javascript.htmlacademy.pro/kekstagram';
+import { BASE_URL } from './const';
 
 const HttpMethod = {
   GET: 'GET',
@@ -17,11 +17,11 @@ const ErrorText = {
 
 const createApi = (route, errorText, method = HttpMethod.GET, body = null) =>
   fetch(`${BASE_URL}${route}`, {method, body})
-    .then(({ok, json}) => {
-      if (!ok) {
+    .then((response) => {
+      if (!response.ok) {
         throw new Error();
       }
-      return json();
+      return response.json();
     })
     .catch(() => {
       throw new Error(errorText);

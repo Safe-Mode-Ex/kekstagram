@@ -1,4 +1,7 @@
-const templateEl = document.querySelector('#picture').content.querySelector('.picture');
+const templateEl = document.querySelector('#picture')
+  .content.querySelector('.picture');
+const dataErrorTemplateEl = document.querySelector('#data-error')
+  .content.querySelector('.data-error');
 
 const createPhotoCardElement = (photoCard) => {
   const photoCardEl = templateEl.cloneNode(true);
@@ -32,4 +35,6 @@ const createCommentElement = ({name, avatar, message}) => {
   return commentEl;
 };
 
-export {createPhotoCardElement, createCommentElement};
+const createDataErrorElement = () => dataErrorTemplateEl.cloneNode(true);
+
+export {createPhotoCardElement, createCommentElement, createDataErrorElement};
