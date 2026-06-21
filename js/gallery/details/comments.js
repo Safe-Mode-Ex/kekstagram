@@ -1,6 +1,6 @@
 import { render } from '../../core/render.js';
 import { createCommentElement } from '../../core/template.js';
-import { isElementVisible, setElementVisibility } from '../../shared/utils.js';
+import { isElementHidden, setElementVisibility } from '../../shared/utils.js';
 import { MAX_VISIBLE_COMMENTS_COUNT } from '../../shared/const.js';
 
 const setupComments = (bigPictureEl) => {
@@ -12,7 +12,7 @@ const setupComments = (bigPictureEl) => {
   let visibleCommentsLength = MAX_VISIBLE_COMMENTS_COUNT;
   let comments = [];
 
-  const onCommentsLoad = (evt) => {
+  const onCommentsLoaderClick = (evt) => {
     evt.preventDefault();
 
     if (visibleCommentsLength === comments.length) {
@@ -38,10 +38,10 @@ const setupComments = (bigPictureEl) => {
   };
 
   return {
-    initializeComments: (photoCardComments) => {
+    initializeComments(photoCardComments) {
       comments = photoCardComments;
 
-      if (isElementVisible(socialCommentCountEl)) {
+      if (isElementHidden(socialCommentCountEl)) {
         setElementVisibility(socialCommentCountEl, true);
         setElementVisibility(commentsLoaderEl, true);
       }
@@ -51,7 +51,7 @@ const setupComments = (bigPictureEl) => {
         setElementVisibility(commentsLoaderEl, false);
       } else {
         socialCommentShownCountEl.textContent = visibleCommentsLength;
-        commentsLoaderEl.addEventListener('click', onCommentsLoad);
+        commentsLoaderEl.addEventListener('click', onCommentsLoaderClick);
       }
 
       render(
@@ -61,11 +61,11 @@ const setupComments = (bigPictureEl) => {
         true
       );
     },
-    destroyComments: () => {
+    destroyComments() {
       socialCommentsEl.innerHTML = '';
       visibleCommentsLength = MAX_VISIBLE_COMMENTS_COUNT;
       setElementVisibility(commentsLoaderEl, true);
-      commentsLoaderEl.removeEventListener('click', onCommentsLoad);
+      commentsLoaderEl.removeEventListener('click', onCommentsLoaderClick);
     }
   };
 };

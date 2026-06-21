@@ -18,7 +18,7 @@ const getRandomArrayElement = (elements) => elements[getRandomInteger(0, element
 const createRandomIdFromRangeGenerator = (min, max) => {
   const previousValues = [];
 
-  return function () {
+  return () => {
     let currentValue = getRandomInteger(min, max);
     if (previousValues.length >= (max - min + 1)) {
       throw Error(`Перебраны все числа из диапазона от ${ min } до ${ max}`);
@@ -32,8 +32,9 @@ const createRandomIdFromRangeGenerator = (min, max) => {
 };
 
 const isEscapeKey = ({key}) => key === 'Escape';
-const isFormFieldFocused = ({target}) => target.type === 'text' || target.tagName === 'TEXTAREA';
-const isButton = ({tagName}) => tagName !== 'BUTTON';
+const isFormFieldFocused = ({target}) =>
+  (target.type === 'text' || target.tagName === 'TEXTAREA') && !target.readOnly;
+const isButton = ({tagName}) => tagName === 'BUTTON';
 
 const validate = (target, predicate) => predicate(target);
 
@@ -60,7 +61,7 @@ const setElementVisibility = (element, isShown) => {
   element.classList[method](CLASS_HIDDEN);
 };
 
-const isElementVisible = (element) => element.classList.contains(CLASS_HIDDEN);
+const isElementHidden = (element) => element.classList.contains(CLASS_HIDDEN);
 
 const cleanError = () => {
   const dataErrorTimeout = setTimeout(() => {
@@ -68,10 +69,6 @@ const cleanError = () => {
     dataErrorEl.remove();
     clearTimeout(dataErrorTimeout);
   }, ERROR_TIMEOUT);
-};
-
-const notificationState = {
-  isOpen: false,
 };
 
 const debounce = (callback, timeoutDelay = DEFAULT_DEBOUNCE_TIME) => {
@@ -107,9 +104,8 @@ export {
   setTransformProperty,
   setFilterProperty,
   setElementVisibility,
-  isElementVisible,
+  isElementHidden,
   cleanError,
-  notificationState,
   debounce,
   throttle,
 };

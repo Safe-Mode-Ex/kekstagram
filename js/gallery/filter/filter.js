@@ -15,7 +15,7 @@ const initializeFilter = (photoCardsContainerEl, photoCards) => {
 
     const {target} = evt;
 
-    if (isButton(target)) {
+    if (!isButton(target)) {
       return;
     }
 

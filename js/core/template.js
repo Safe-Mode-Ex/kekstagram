@@ -1,4 +1,6 @@
-import { isEscapeKey, notificationState } from '../shared/utils.js';
+import { AVATAR_SIZE } from '../shared/const.js';
+import { closeNotification, openNotification } from '../shared/notification.js';
+import { isEscapeKey } from '../shared/utils.js';
 
 const photoCardTemplateEl = document.querySelector('#picture')
   .content.querySelector('.picture');
@@ -29,15 +31,18 @@ const createCommentElement = ({name, avatar, message}) => {
   const commentEl = document.createElement('li');
   commentEl.classList.add('social__comment');
 
-  commentEl.innerHTML = `
-    <img
-      class="social__picture"
-      src="${avatar}"
-      alt="${name}"
-      width="35" height="35"
-    >
-    <p class="social__text">${message}</p>
-`;
+  const avatarEl = document.createElement('img');
+  avatarEl.classList.add('social__picture');
+  avatarEl.src = avatar;
+  avatarEl.alt = name;
+  avatarEl.width = AVATAR_SIZE;
+  avatarEl.height = AVATAR_SIZE;
+
+  const textEl = document.createElement('p');
+  textEl.classList.add('social__text');
+  textEl.textContent = message;
+
+  commentEl.append(avatarEl, textEl);
   return commentEl;
 };
 
@@ -54,7 +59,7 @@ const createResponseElement = (isSuccess = true) => {
 
   const removeElement = (currentTarget) => {
     element.remove();
-    notificationState.isOpen = false;
+    closeNotification();
     currentTarget.removeEventListener('click', onElementClick);
     document.removeEventListener('keydown', onEscKeydown);
   };
@@ -76,8 +81,7 @@ const createResponseElement = (isSuccess = true) => {
 
   element.addEventListener('click', onElementClick);
   document.addEventListener('keydown', onEscKeydown);
-  notificationState.isOpen = true;
-
+  openNotification();
 
   return element;
 };

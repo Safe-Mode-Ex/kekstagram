@@ -41,14 +41,14 @@ const setupScale = (imgUploadOverlayEl, imgUploadPreviewImageEl) => {
   };
 
   return {
-    initializeScale: () => {
+    initializeScale() {
       const scaleValue = parseInt(scaleControlValueEl.value, DECIMAL_RADIX);
       setScaleControlsDisabledState(scaleValue);
 
       scaleEl.addEventListener('click', onScaleValueChange);
       scaleControlValueEl.addEventListener('change', onScaleControlValueChange);
     },
-    destroyScale: () => {
+    destroyScale() {
       scaleEl.removeEventListener('click', onScaleValueChange);
       scaleControlValueEl.removeEventListener('change', onScaleControlValueChange);
     }
