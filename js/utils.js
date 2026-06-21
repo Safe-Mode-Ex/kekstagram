@@ -27,6 +27,7 @@ const createRandomIdFromRangeGenerator = (min, max) => {
 
 const isEscapeKey = ({key}) => key === 'Escape';
 const isFormFieldFocused = ({target}) => target.type === 'text' || target.tagName === 'TEXTAREA';
+const isButton = ({tagName}) => tagName !== 'BUTTON';
 
 const validate = (target, predicate) => predicate(target);
 
@@ -95,6 +96,7 @@ export {
   getRandomArrayElement,
   createRandomIdFromRangeGenerator,
   isEscapeKey,
+  isButton,
   isFormFieldFocused,
   validate,
   setTransformProperty,
