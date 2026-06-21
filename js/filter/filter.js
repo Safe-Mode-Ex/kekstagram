@@ -1,8 +1,10 @@
 import { render } from '../render';
 import { createPhotoCardElement } from '../template';
-import { getRandomInteger, isButton } from '../utils';
+import { debounce, isButton } from '../utils';
 import { getSortedPhotoCards } from './sort';
 import { setFilterState } from './state';
+
+const renderWithDebounce = debounce(render);
 
 const initializeFilter = (photoCardsContainerEl, photoCards) => {
   const filtersEl = document.querySelector('.img-filters');
@@ -19,9 +21,15 @@ const initializeFilter = (photoCardsContainerEl, photoCards) => {
 
     const {id} = target;
     const photoCardsToRender = getSortedPhotoCards(photoCards, id);
-
-    render(photoCardsContainerEl, createPhotoCardElement, photoCardsToRender, true, '.picture');
     setFilterState(filtersEl, target);
+
+    renderWithDebounce(
+      photoCardsContainerEl,
+      createPhotoCardElement,
+      photoCardsToRender,
+      true,
+      '.picture',
+    );
   });
 };
 
