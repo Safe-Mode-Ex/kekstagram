@@ -96,7 +96,6 @@ const throttle = (callback, delayBetweenFrames) => {
   };
 };
 
-
 export {
   getRandomInteger,
   getRandomArrayElement,

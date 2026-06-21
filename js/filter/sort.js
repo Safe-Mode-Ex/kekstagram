@@ -18,12 +18,12 @@ const getSortedPhotoCards = (photoCards, sortId) => {
 
   switch (strategy) {
     case SortStrategy.DISCUSSED: {
-      const sortedPhotoCards = photoCards.sort(sortStrategy[strategy]);
+      const sortedPhotoCards = photoCards.toSorted(sortStrategy[strategy]);
       photoCardsToRender = sortedPhotoCards;
       break;
     }
     case SortStrategy.RANDOM: {
-      const sortedPhotoCards = photoCards.sort(sortStrategy[strategy]);
+      const sortedPhotoCards = photoCards.toSorted(sortStrategy[strategy]);
       photoCardsToRender = sortedPhotoCards.slice(0, RANDOM_PHOTO_CARDS_COUNT);
       break;
     }

@@ -1,5 +1,5 @@
-import { CLASS_HIDDEN, CLASS_MODAL_OPEN } from './const.js';
-import { isEscapeKey, isFormFieldFocused, notificationState, validate } from './utils.js';
+import { CLASS_MODAL_OPEN } from './const.js';
+import { isElementVisible, isEscapeKey, isFormFieldFocused, notificationState, setElementVisibility, validate } from './utils.js';
 
 const initializeModal = ({eventName, triggerEl, modalEl, predicate, modalOpenCb}) => {
   const onModalOpen = (evt) => {
@@ -12,11 +12,8 @@ const initializeModal = ({eventName, triggerEl, modalEl, predicate, modalOpenCb}
     const closeBtnEl = modalEl.querySelector('.cancel');
 
     const toggleModal = () => {
-      if (modalEl.classList.contains(CLASS_HIDDEN)) {
-        modalEl.classList.remove(CLASS_HIDDEN);
-      } else {
-        modalEl.classList.add(CLASS_HIDDEN);
-      }
+      const isVisible = isElementVisible(modalEl);
+      setElementVisibility(modalEl, isVisible);
     };
 
     const closeModal = () => {
