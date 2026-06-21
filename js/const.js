@@ -12,3 +12,6 @@ export const HASH_TAGS_MAX_COUNT = 5;
 export const COMMENT_MAX_LENGHT = 140;
 export const BASE_URL = 'https://32.javascript.htmlacademy.pro/kekstagram';
 export const ERROR_TIMEOUT = 5000;
+export const RANDOM_PHOTO_CARDS_COUNT = 10;
+export const CLASS_ACTIVE_FILTER_BUTTON = 'img-filters__button--active';
+export const DEFAULT_DEBOUNCE_TIME = 500;

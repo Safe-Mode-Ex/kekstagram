@@ -1,4 +1,10 @@
-import { CLASS_HIDDEN, DECIMAL_RADIX, ERROR_TIMEOUT, NOT_FOUND_INDEX } from './const';
+import {
+  CLASS_HIDDEN,
+  DECIMAL_RADIX,
+  DEFAULT_DEBOUNCE_TIME,
+  ERROR_TIMEOUT,
+  NOT_FOUND_INDEX
+} from './const';
 
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -27,6 +33,7 @@ const createRandomIdFromRangeGenerator = (min, max) => {
 
 const isEscapeKey = ({key}) => key === 'Escape';
 const isFormFieldFocused = ({target}) => target.type === 'text' || target.tagName === 'TEXTAREA';
+const isButton = ({tagName}) => tagName !== 'BUTTON';
 
 const validate = (target, predicate) => predicate(target);
 
@@ -53,6 +60,8 @@ const setElementVisibility = (element, isShown) => {
   element.classList[method](CLASS_HIDDEN);
 };
 
+const isElementVisible = (element) => element.classList.contains(CLASS_HIDDEN);
+
 const cleanError = () => {
   const dataErrorTimeout = setTimeout(() => {
     const dataErrorEl = document.querySelector('.data-error');
@@ -65,7 +74,7 @@ const notificationState = {
   isOpen: false,
 };
 
-const debounce = (callback, timeoutDelay = 500) => {
+const debounce = (callback, timeoutDelay = DEFAULT_DEBOUNCE_TIME) => {
   let timeoutId;
 
   return (...rest) => {
@@ -93,11 +102,13 @@ export {
   getRandomArrayElement,
   createRandomIdFromRangeGenerator,
   isEscapeKey,
+  isButton,
   isFormFieldFocused,
   validate,
   setTransformProperty,
   setFilterProperty,
   setElementVisibility,
+  isElementVisible,
   cleanError,
   notificationState,
   debounce,
