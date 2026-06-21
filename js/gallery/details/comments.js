@@ -47,12 +47,13 @@ const setupComments = (bigPictureEl) => {
       }
 
       if (comments.length <= MAX_VISIBLE_COMMENTS_COUNT) {
-        setElementVisibility(socialCommentCountEl, false);
+        visibleCommentsLength = comments.length;
         setElementVisibility(commentsLoaderEl, false);
       } else {
-        socialCommentShownCountEl.textContent = visibleCommentsLength;
         commentsLoaderEl.addEventListener('click', onCommentsLoaderClick);
       }
+
+      socialCommentShownCountEl.textContent = visibleCommentsLength;
 
       render(
         socialCommentsEl,
