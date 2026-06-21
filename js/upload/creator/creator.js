@@ -7,7 +7,7 @@ import { setupFile } from './initializers/file.js';
 const uploadImageCreator = (imgUploadInputEl, imgUploadOverlayEl, imgUploadFormEl) => {
   const imgUploadPreviewImageEl = imgUploadOverlayEl.querySelector('.img-upload__preview img');
 
-  const {initializeFile, destroyFile} = setupFile(imgUploadInputEl, imgUploadPreviewImageEl);
+  const {initializeFile, destroyFile} = setupFile(imgUploadInputEl, imgUploadPreviewImageEl, imgUploadOverlayEl);
   const {initializeScale, destroyScale} = setupScale(imgUploadOverlayEl, imgUploadPreviewImageEl);
   const {initializeEffects, destroyEffects} = setupEffects(imgUploadOverlayEl, imgUploadPreviewImageEl);
   const {initializeValidation, hasErrors, destroyValidation} = setupValidation(imgUploadFormEl);
