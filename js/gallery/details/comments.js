@@ -38,7 +38,7 @@ const setupComments = (bigPictureEl) => {
   };
 
   return {
-    initializeComments: (photoCardComments) => {
+    initializeComments(photoCardComments) {
       comments = photoCardComments;
 
       if (isElementHidden(socialCommentCountEl)) {
@@ -61,7 +61,7 @@ const setupComments = (bigPictureEl) => {
         true
       );
     },
-    destroyComments: () => {
+    destroyComments() {
       socialCommentsEl.innerHTML = '';
       visibleCommentsLength = MAX_VISIBLE_COMMENTS_COUNT;
       setElementVisibility(commentsLoaderEl, true);
