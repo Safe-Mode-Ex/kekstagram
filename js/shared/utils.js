@@ -32,7 +32,8 @@ const createRandomIdFromRangeGenerator = (min, max) => {
 };
 
 const isEscapeKey = ({key}) => key === 'Escape';
-const isFormFieldFocused = ({target}) => target.type === 'text' || target.tagName === 'TEXTAREA';
+const isFormFieldFocused = ({target}) =>
+  (target.type === 'text' || target.tagName === 'TEXTAREA') && !target.readOnly;
 const isButton = ({tagName}) => tagName !== 'BUTTON';
 
 const validate = (target, predicate) => predicate(target);
