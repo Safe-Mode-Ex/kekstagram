@@ -1,3 +1,4 @@
+import { createResponseElement } from '../../../core/template.js';
 import { FILE_TYPES } from '../../../shared/const.js';
 
 const setupFile = (imgUploadInputEl, imgUploadPreviewImageEl) => {
@@ -12,6 +13,7 @@ const setupFile = (imgUploadInputEl, imgUploadPreviewImageEl) => {
 
       if (!validateFile(file)) {
         imgUploadInputEl.value = '';
+        createResponseElement(false);
         return;
       }
 
