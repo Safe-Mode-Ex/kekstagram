@@ -1,5 +1,5 @@
-import { CLASS_HIDDEN, CLASS_MODAL_OPEN } from './const';
-import { isEscapeKey, isFormFieldFocused, notificationState, validate } from './utils';
+import { CLASS_HIDDEN, CLASS_MODAL_OPEN } from './const.js';
+import { isEscapeKey, isFormFieldFocused, notificationState, validate } from './utils.js';
 
 const initializeModal = ({eventName, triggerEl, modalEl, predicate, modalOpenCb}) => {
   const onModalOpen = (evt) => {

@@ -1,8 +1,8 @@
-import { render } from '../render';
-import { createPhotoCardElement } from '../template';
-import { debounce, isButton } from '../utils';
-import { getSortedPhotoCards } from './sort';
-import { setFilterState } from './state';
+import { render } from '../render.js';
+import { createPhotoCardElement } from '../template.js';
+import { debounce, isButton } from '../utils.js';
+import { getSortedPhotoCards } from './sort.js';
+import { setFilterState } from './state.js';
 
 const renderWithDebounce = debounce(render);
 

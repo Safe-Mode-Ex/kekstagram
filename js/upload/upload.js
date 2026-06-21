@@ -1,7 +1,7 @@
-import { setupScale } from './scale';
-import { setupEffects } from './effects';
-import { setupValidation } from './validate';
-import { setupSubmit } from './submit';
+import { setupScale } from './scale.js';
+import { setupEffects } from './effects.js';
+import { setupValidation } from './validate.js';
+import { setupSubmit } from './submit.js';
 
 const populateUploadImageCreator = (imgUploadInputEl, imgUploadOverlayEl, imgUploadFormEl) => {
   const imgUploadPreviewImageEl = imgUploadOverlayEl.querySelector('.img-upload__preview img');

@@ -1,11 +1,11 @@
-import { createDataErrorElement, createPhotoCardElement } from './template';
-import { render } from './render';
-import { initializeModal } from './modal';
-import { populateDetailsCreator } from './details/details';
-import { populateUploadImageCreator } from './upload/upload';
-import { getData } from './api';
-import { cleanError } from './utils';
-import { initializeFilter } from './filter/filter';
+import { createDataErrorElement, createPhotoCardElement } from './template.js';
+import { render } from './render.js';
+import { initializeModal } from './modal.js';
+import { populateDetailsCreator } from './details/details.js';
+import { populateUploadImageCreator } from './upload/upload.js';
+import { getData } from './api.js';
+import { cleanError } from './utils.js';
+import { initializeFilter } from './filter/filter.js';
 
 const photoCardsContainerEl = document.querySelector('.pictures');
 const bigPictureEl = document.querySelector('.big-picture');

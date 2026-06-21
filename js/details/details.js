@@ -1,5 +1,5 @@
-import { setupComments } from './comments';
-import { populateInfo } from './info';
+import { setupComments } from './comments.js';
+import { populateInfo } from './info.js';
 
 const populateDetailsCreator = (photoCards, bigPictureEl) => {
   const {initializeComments, destroyComments} = setupComments(bigPictureEl);

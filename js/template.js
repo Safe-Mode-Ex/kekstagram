@@ -1,4 +1,4 @@
-import { isEscapeKey, notificationState } from './utils';
+import { isEscapeKey, notificationState } from './utils.js';
 
 const photoCardTemplateEl = document.querySelector('#picture')
   .content.querySelector('.picture');
