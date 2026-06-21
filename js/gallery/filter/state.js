@@ -1,4 +1,4 @@
-import { CLASS_ACTIVE_FILTER_BUTTON } from '../const';
+import { CLASS_ACTIVE_FILTER_BUTTON } from '../../shared/const.js';
 
 const setFilterState = (filtersEl, target) => {
   const buttons = filtersEl.querySelectorAll('button');

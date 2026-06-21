@@ -1,5 +1,5 @@
-import { COMMENT_MAX_LENGHT, HASH_TAG_REGEXP, HASH_TAGS_MAX_COUNT } from '../const';
-import { validationConfig } from './config';
+import { COMMENT_MAX_LENGTH, HASH_TAG_REGEXP, HASH_TAGS_MAX_COUNT } from '../../../shared/const.js';
+import { validationConfig } from '../config.js';
 
 const setupValidation = (imgUploadFormEl) => {
   const hashTagInputEl = imgUploadFormEl.querySelector('.text__hashtags');
@@ -24,8 +24,8 @@ const setupValidation = (imgUploadFormEl) => {
 
     instance.addValidator(
       commentTextEl,
-      (value) => !value.length || value.length <= COMMENT_MAX_LENGHT,
-      `Длина комментария не может быть больше ${COMMENT_MAX_LENGHT} символов`,
+      (value) => !value.length || value.length <= COMMENT_MAX_LENGTH,
+      `Длина комментария не может быть больше ${COMMENT_MAX_LENGTH} символов`,
     );
   };
 

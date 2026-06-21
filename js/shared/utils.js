@@ -4,7 +4,7 @@ import {
   DEFAULT_DEBOUNCE_TIME,
   ERROR_TIMEOUT,
   NOT_FOUND_INDEX
-} from './const';
+} from './const.js';
 
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -44,7 +44,7 @@ const setTransformProperty = (element, param, value) => {
 
   if (scaleIndex !== NOT_FOUND_INDEX) {
     const scaleParam = transformProp
-      .slice(scaleIndex, transformProp.indexOf(')') + 1, scaleIndex);
+      .slice(scaleIndex, transformProp.indexOf(')') + 1);
     transformProp = transformProp.replace(scaleParam, '');
   }
 
@@ -95,7 +95,6 @@ const throttle = (callback, delayBetweenFrames) => {
     }
   };
 };
-
 
 export {
   getRandomInteger,

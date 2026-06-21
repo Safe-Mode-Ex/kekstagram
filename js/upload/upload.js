@@ -1,37 +1,24 @@
-import { setupScale } from './scale';
-import { setupEffects } from './effects';
-import { setupValidation } from './validate';
-import { setupSubmit } from './submit';
+import { initializeModal } from '../shared/modal.js';
+import { uploadImageCreator } from './creator/creator.js';
 
-const populateUploadImageCreator = (imgUploadInputEl, imgUploadOverlayEl, imgUploadFormEl) => {
-  const imgUploadPreviewImageEl = imgUploadOverlayEl.querySelector('.img-upload__preview img');
+const createUpload = (photoCardsContainerEl) => {
+  const imgUploadFormEl = photoCardsContainerEl.querySelector('.img-upload__form');
+  const imgUploadInputEl = imgUploadFormEl.querySelector('.img-upload__input');
+  const imgUploadOverlayEl = imgUploadFormEl.querySelector('.img-upload__overlay');
+  const predicateUploadTarget = (target) => Boolean(target.files[0]);
+  const populateUploadImage = uploadImageCreator(
+    imgUploadInputEl,
+    imgUploadOverlayEl,
+    imgUploadFormEl,
+  );
 
-  const {initializeScale, destroyScale} = setupScale(imgUploadOverlayEl, imgUploadPreviewImageEl);
-  const {initializeEffects, destroyEffects} = setupEffects(imgUploadOverlayEl, imgUploadPreviewImageEl);
-  const {initializeValidation, hasErrors, destroyValidation} = setupValidation(imgUploadFormEl);
-  const {initializeSubmit, destroySubmit} = setupSubmit(imgUploadFormEl, hasErrors);
-
-  const creator = (_, closeModal) => {
-    imgUploadPreviewImageEl.src = URL.createObjectURL(imgUploadInputEl.files[0]);
-
-    initializeScale();
-    initializeEffects();
-    initializeValidation();
-    initializeSubmit(closeModal);
-  };
-
-  creator.clean = () => {
-    imgUploadFormEl.reset();
-    imgUploadPreviewImageEl.src = '';
-    imgUploadPreviewImageEl.style = '';
-
-    destroyScale();
-    destroyEffects();
-    destroyValidation();
-    destroySubmit();
-  };
-
-  return creator;
+  initializeModal({
+    eventName: 'change',
+    triggerEl: imgUploadInputEl,
+    modalEl: imgUploadOverlayEl,
+    predicate: predicateUploadTarget,
+    modalOpenCb: populateUploadImage,
+  });
 };
 
-export {populateUploadImageCreator};
+export {createUpload};

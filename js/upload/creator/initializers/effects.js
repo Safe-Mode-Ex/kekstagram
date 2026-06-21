@@ -1,6 +1,6 @@
-import { NUMBER_REGEXP } from '../const';
-import { setElementVisibility, setFilterProperty, validate } from '../utils';
-import { effectMap, sliderInitialOptions } from './config';
+import { NUMBER_REGEXP } from '../../../shared/const.js';
+import { setElementVisibility, setFilterProperty, validate } from '../../../shared/utils.js';
+import { effectMap, sliderInitialOptions } from '../config.js';
 
 const setupEffects = (imgUploadOverlayEl, imgUploadPreviewImageEl) => {
   const effectsListEl = imgUploadOverlayEl.querySelector('.effects__list');
