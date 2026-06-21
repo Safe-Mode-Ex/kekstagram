@@ -1,4 +1,4 @@
-import { FILE_TYPES } from '../const';
+import { FILE_TYPES } from '../../../shared/const';
 
 const setupFile = (imgUploadInputEl, imgUploadPreviewImageEl) => {
   const validateFile = (file) => {

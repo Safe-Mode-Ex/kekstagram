@@ -1,38 +1,24 @@
-import { setupScale } from './scale.js';
-import { setupEffects } from './effects.js';
-import { setupValidation } from './validate.js';
-import { setupSubmit } from './submit.js';
-import { setupFile } from './file.js';
+import { initializeModal } from '../shared/modal';
+import { uploadImageCreator } from './creator/creator';
 
-const populateUploadImageCreator = (imgUploadInputEl, imgUploadOverlayEl, imgUploadFormEl) => {
-  const imgUploadPreviewImageEl = imgUploadOverlayEl.querySelector('.img-upload__preview img');
+const createUpload = (photoCardsContainerEl) => {
+  const imgUploadFormEl = photoCardsContainerEl.querySelector('.img-upload__form');
+  const imgUploadInputEl = imgUploadFormEl.querySelector('.img-upload__input');
+  const imgUploadOverlayEl = imgUploadFormEl.querySelector('.img-upload__overlay');
+  const predicateUploadTarget = (target) => Boolean(target.files[0]);
+  const populateUplodeImage = uploadImageCreator(
+    imgUploadInputEl,
+    imgUploadOverlayEl,
+    imgUploadFormEl,
+  );
 
-  const {initializeFile, destroyFile} = setupFile(imgUploadInputEl, imgUploadPreviewImageEl);
-  const {initializeScale, destroyScale} = setupScale(imgUploadOverlayEl, imgUploadPreviewImageEl);
-  const {initializeEffects, destroyEffects} = setupEffects(imgUploadOverlayEl, imgUploadPreviewImageEl);
-  const {initializeValidation, hasErrors, destroyValidation} = setupValidation(imgUploadFormEl);
-  const {initializeSubmit, destroySubmit} = setupSubmit(imgUploadFormEl, hasErrors);
-
-  const creator = (_, closeModal) => {
-    initializeFile();
-    initializeScale();
-    initializeEffects();
-    initializeValidation();
-    initializeSubmit(closeModal);
-  };
-
-  creator.clean = () => {
-    imgUploadFormEl.reset();
-    imgUploadPreviewImageEl.style = '';
-
-    destroyFile();
-    destroyScale();
-    destroyEffects();
-    destroyValidation();
-    destroySubmit();
-  };
-
-  return creator;
+  initializeModal({
+    eventName: 'change',
+    triggerEl: imgUploadInputEl,
+    modalEl: imgUploadOverlayEl,
+    predicate: predicateUploadTarget,
+    modalOpenCb: populateUplodeImage,
+  });
 };
 
-export {populateUploadImageCreator};
+export {createUpload};

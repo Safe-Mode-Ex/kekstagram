@@ -1,5 +1,5 @@
-import { RANDOM_PHOTO_CARDS_COUNT } from '../const';
-import { getRandomInteger } from '../utils';
+import { RANDOM_PHOTO_CARDS_COUNT } from '../../shared/const';
+import { getRandomInteger } from '../../shared/utils';
 
 const SortStrategy = {
   RANDOM: 'random',
@@ -18,8 +18,7 @@ const getSortedPhotoCards = (photoCards, sortId) => {
 
   switch (strategy) {
     case SortStrategy.DISCUSSED: {
-      const sortedPhotoCards = photoCards.toSorted(sortStrategy[strategy]);
-      photoCardsToRender = sortedPhotoCards;
+      photoCardsToRender = photoCards.toSorted(sortStrategy[strategy]);
       break;
     }
     case SortStrategy.RANDOM: {

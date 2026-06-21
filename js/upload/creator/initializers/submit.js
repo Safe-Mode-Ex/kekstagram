@@ -1,6 +1,6 @@
-import { sendData } from '../api';
-import { render } from '../render';
-import { createResponseElement } from '../template';
+import { render } from '../../../core/render';
+import { sendData } from '../../../shared/api';
+import { createResponseElement } from '../../../core/template';
 
 const setupSubmit = (imgUploadFormEl, hasErrors) => {
   let closeModal = null;
