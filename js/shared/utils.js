@@ -44,7 +44,7 @@ const setTransformProperty = (element, param, value) => {
 
   if (scaleIndex !== NOT_FOUND_INDEX) {
     const scaleParam = transformProp
-      .slice(scaleIndex, transformProp.indexOf(')') + 1, scaleIndex);
+      .slice(scaleIndex, transformProp.indexOf(')') + 1);
     transformProp = transformProp.replace(scaleParam, '');
   }
 

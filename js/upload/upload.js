@@ -6,7 +6,7 @@ const createUpload = (photoCardsContainerEl) => {
   const imgUploadInputEl = imgUploadFormEl.querySelector('.img-upload__input');
   const imgUploadOverlayEl = imgUploadFormEl.querySelector('.img-upload__overlay');
   const predicateUploadTarget = (target) => Boolean(target.files[0]);
-  const populateUplodeImage = uploadImageCreator(
+  const populateUploadImage = uploadImageCreator(
     imgUploadInputEl,
     imgUploadOverlayEl,
     imgUploadFormEl,
@@ -17,7 +17,7 @@ const createUpload = (photoCardsContainerEl) => {
     triggerEl: imgUploadInputEl,
     modalEl: imgUploadOverlayEl,
     predicate: predicateUploadTarget,
-    modalOpenCb: populateUplodeImage,
+    modalOpenCb: populateUploadImage,
   });
 };
 
