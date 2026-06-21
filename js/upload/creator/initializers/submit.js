@@ -3,6 +3,7 @@ import { sendData } from '../../../shared/api.js';
 import { createResponseElement } from '../../../core/template.js';
 
 const setupSubmit = (imgUploadFormEl, hasErrors) => {
+  const submitBtnEl = imgUploadFormEl.querySelector('.img-upload__submit');
   let closeModal = null;
 
   const onFormSubmit = (evt) => {
@@ -12,7 +13,6 @@ const setupSubmit = (imgUploadFormEl, hasErrors) => {
       return;
     }
 
-    const submitBtnEl = imgUploadFormEl.querySelector('.img-upload__submit');
     submitBtnEl.disabled = true;
 
     sendData(new FormData(imgUploadFormEl))
@@ -32,11 +32,11 @@ const setupSubmit = (imgUploadFormEl, hasErrors) => {
   };
 
   return {
-    initializeSubmit: (close) => {
+    initializeSubmit(close) {
       closeModal = close;
       imgUploadFormEl.addEventListener('submit', onFormSubmit);
     },
-    destroySubmit: () => {
+    destroySubmit() {
       imgUploadFormEl.removeEventListener('submit', onFormSubmit);
     }
   };

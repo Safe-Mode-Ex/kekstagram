@@ -4,10 +4,9 @@ const setFilterState = (filtersEl, target) => {
   const buttons = filtersEl.querySelectorAll('button');
 
   for (const button of buttons) {
-    button.classList.remove(CLASS_ACTIVE_FILTER_BUTTON);
+    const strategy = button.id !== target.id ? 'remove' : 'add';
+    button.classList[strategy](CLASS_ACTIVE_FILTER_BUTTON);
   }
-
-  target.classList.add(CLASS_ACTIVE_FILTER_BUTTON);
 };
 
 export {setFilterState};

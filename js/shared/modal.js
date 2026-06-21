@@ -1,7 +1,7 @@
 import { CLASS_MODAL_OPEN } from './const.js';
 import { isNotificationOpen } from './notification.js';
 import {
-  isElementVisible,
+  isElementHidden,
   isEscapeKey,
   isFormFieldFocused,
   setElementVisibility,
@@ -9,6 +9,8 @@ import {
 } from './utils.js';
 
 const initializeModal = ({eventName, triggerEl, modalEl, predicate, modalOpenCb}) => {
+  const closeBtnEl = modalEl.querySelector('.cancel');
+
   const onModalOpen = (evt) => {
     if (!validate(evt.target, predicate)) {
       return;
@@ -16,11 +18,9 @@ const initializeModal = ({eventName, triggerEl, modalEl, predicate, modalOpenCb}
 
     evt.preventDefault();
 
-    const closeBtnEl = modalEl.querySelector('.cancel');
-
     const toggleModal = () => {
-      const isVisible = isElementVisible(modalEl);
-      setElementVisibility(modalEl, isVisible);
+      const isHidden = isElementHidden(modalEl);
+      setElementVisibility(modalEl, isHidden);
     };
 
     const closeModal = () => {

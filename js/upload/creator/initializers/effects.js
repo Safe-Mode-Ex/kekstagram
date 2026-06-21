@@ -31,7 +31,7 @@ const setupEffects = (imgUploadOverlayEl, imgUploadPreviewImageEl) => {
   setElementVisibility(effectLevelEl, false);
 
   return {
-    initializeEffects: () => {
+    initializeEffects() {
       if (!effectLevelSliderEl.noUiSlider) {
         noUiSlider
           .create(effectLevelSliderEl, sliderInitialOptions);
@@ -47,7 +47,7 @@ const setupEffects = (imgUploadOverlayEl, imgUploadPreviewImageEl) => {
 
       effectsListEl.addEventListener('change', onEffectChange);
     },
-    destroyEffects: () => {
+    destroyEffects() {
       setElementVisibility(effectLevelEl, false);
       effectLevelSliderEl.noUiSlider.destroy();
       effectsListEl.removeEventListener('change', onEffectChange);

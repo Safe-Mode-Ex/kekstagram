@@ -16,3 +16,4 @@ export const RANDOM_PHOTO_CARDS_COUNT = 10;
 export const CLASS_ACTIVE_FILTER_BUTTON = 'img-filters__button--active';
 export const DEFAULT_DEBOUNCE_TIME = 500;
 export const FILE_TYPES = ['jpg', 'jpeg', 'png'];
+export const AVATAR_SIZE = 35;

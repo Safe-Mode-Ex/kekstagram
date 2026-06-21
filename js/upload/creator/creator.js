@@ -23,7 +23,8 @@ const uploadImageCreator = (imgUploadInputEl, imgUploadOverlayEl, imgUploadFormE
 
   creator.clean = () => {
     imgUploadFormEl.reset();
-    imgUploadPreviewImageEl.style = '';
+    imgUploadPreviewImageEl.style.transform = '';
+    imgUploadPreviewImageEl.style.filter = '';
 
     destroyFile();
     destroyScale();

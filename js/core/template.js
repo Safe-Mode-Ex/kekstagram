@@ -1,3 +1,4 @@
+import { AVATAR_SIZE } from '../shared/const.js';
 import { closeNotification, openNotification } from '../shared/notification.js';
 import { isEscapeKey } from '../shared/utils.js';
 
@@ -34,8 +35,8 @@ const createCommentElement = ({name, avatar, message}) => {
   avatarEl.classList.add('social__picture');
   avatarEl.src = avatar;
   avatarEl.alt = name;
-  avatarEl.width = 35;
-  avatarEl.height = 35;
+  avatarEl.width = AVATAR_SIZE;
+  avatarEl.height = AVATAR_SIZE;
 
   const textEl = document.createElement('p');
   textEl.classList.add('social__text');

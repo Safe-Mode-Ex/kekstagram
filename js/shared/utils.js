@@ -18,7 +18,7 @@ const getRandomArrayElement = (elements) => elements[getRandomInteger(0, element
 const createRandomIdFromRangeGenerator = (min, max) => {
   const previousValues = [];
 
-  return function () {
+  return () => {
     let currentValue = getRandomInteger(min, max);
     if (previousValues.length >= (max - min + 1)) {
       throw Error(`Перебраны все числа из диапазона от ${ min } до ${ max}`);
@@ -34,7 +34,7 @@ const createRandomIdFromRangeGenerator = (min, max) => {
 const isEscapeKey = ({key}) => key === 'Escape';
 const isFormFieldFocused = ({target}) =>
   (target.type === 'text' || target.tagName === 'TEXTAREA') && !target.readOnly;
-const isButton = ({tagName}) => tagName !== 'BUTTON';
+const isButton = ({tagName}) => tagName === 'BUTTON';
 
 const validate = (target, predicate) => predicate(target);
 
@@ -61,7 +61,7 @@ const setElementVisibility = (element, isShown) => {
   element.classList[method](CLASS_HIDDEN);
 };
 
-const isElementVisible = (element) => element.classList.contains(CLASS_HIDDEN);
+const isElementHidden = (element) => element.classList.contains(CLASS_HIDDEN);
 
 const cleanError = () => {
   const dataErrorTimeout = setTimeout(() => {
@@ -104,7 +104,7 @@ export {
   setTransformProperty,
   setFilterProperty,
   setElementVisibility,
-  isElementVisible,
+  isElementHidden,
   cleanError,
   debounce,
   throttle,

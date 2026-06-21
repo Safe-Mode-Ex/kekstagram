@@ -17,7 +17,7 @@ const setupFile = (imgUploadInputEl, imgUploadPreviewImageEl, imgUploadOverlayEl
   };
 
   return {
-    initializeFile: () => {
+    initializeFile() {
       const file = imgUploadInputEl.files[0];
 
       if (!validateFile(file)) {
@@ -31,7 +31,7 @@ const setupFile = (imgUploadInputEl, imgUploadPreviewImageEl, imgUploadOverlayEl
       imgUploadPreviewImageEl.src = fileUrl;
       setPreviewsImage(fileUrl);
     },
-    destroyFile: () => {
+    destroyFile() {
       imgUploadPreviewImageEl.src = '';
       setPreviewsImage('');
     }

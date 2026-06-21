@@ -38,17 +38,17 @@ const setupValidation = (imgUploadFormEl) => {
   };
 
   return {
-    initializeValidation: () => {
+    initializeValidation() {
       validation = new Pristine(imgUploadFormEl, validationConfig, false);
       setValidators(validation);
       hashTagInputEl.addEventListener('change', onHashTagChange);
       commentTextEl.addEventListener('input', onCommentInput);
     },
-    hasErrors: () => {
+    hasErrors() {
       validation.validate();
-      return validation.getErrors()?.length;
+      return Boolean(validation.getErrors()?.length);
     },
-    destroyValidation: () => {
+    destroyValidation() {
       validation.destroy();
       hashTagInputEl.removeEventListener('change', onHashTagChange);
       commentTextEl.removeEventListener('input', onCommentInput);
