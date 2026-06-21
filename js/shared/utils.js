@@ -4,7 +4,7 @@ import {
   DEFAULT_DEBOUNCE_TIME,
   ERROR_TIMEOUT,
   NOT_FOUND_INDEX
-} from './const';
+} from './const.js';
 
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));

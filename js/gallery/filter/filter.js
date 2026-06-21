@@ -1,6 +1,6 @@
 import { render } from '../../core/render.js';
-import { createPhotoCardElement } from '../../core/template';
-import { debounce, isButton } from '../../shared/utils';
+import { createPhotoCardElement } from '../../core/template.js';
+import { debounce, isButton } from '../../shared/utils.js';
 import { getSortedPhotoCards } from './sort.js';
 import { setFilterState } from './state.js';
 

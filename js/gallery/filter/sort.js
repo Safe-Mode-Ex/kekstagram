@@ -1,5 +1,5 @@
-import { RANDOM_PHOTO_CARDS_COUNT } from '../../shared/const';
-import { getRandomInteger } from '../../shared/utils';
+import { RANDOM_PHOTO_CARDS_COUNT } from '../../shared/const.js';
+import { getRandomInteger } from '../../shared/utils.js';
 
 const SortStrategy = {
   RANDOM: 'random',

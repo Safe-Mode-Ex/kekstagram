@@ -1,7 +1,7 @@
-import { render } from '../../core/render';
-import { createCommentElement } from '../../core/template';
-import { isElementVisible, setElementVisibility } from '../../shared/utils';
-import { MAX_VISIBLE_COMMENTS_COUNT } from '../../shared/const';
+import { render } from '../../core/render.js';
+import { createCommentElement } from '../../core/template.js';
+import { isElementVisible, setElementVisibility } from '../../shared/utils.js';
+import { MAX_VISIBLE_COMMENTS_COUNT } from '../../shared/const.js';
 
 const setupComments = (bigPictureEl) => {
   const socialCommentsEl = bigPictureEl.querySelector('.social__comments');

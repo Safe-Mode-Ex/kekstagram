@@ -1,5 +1,5 @@
-import { COMMENT_MAX_LENGTH, HASH_TAG_REGEXP, HASH_TAGS_MAX_COUNT } from '../../../shared/const';
-import { validationConfig } from '../config';
+import { COMMENT_MAX_LENGTH, HASH_TAG_REGEXP, HASH_TAGS_MAX_COUNT } from '../../../shared/const.js';
+import { validationConfig } from '../config.js';
 
 const setupValidation = (imgUploadFormEl) => {
   const hashTagInputEl = imgUploadFormEl.querySelector('.text__hashtags');

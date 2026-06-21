@@ -1,5 +1,5 @@
-import { DECIMAL_RADIX, MAX_SCALE_VALUE, MIN_SCALE_VALUE, SCALE_STEP } from '../../../shared/const';
-import { setTransformProperty, validate } from '../../../shared/utils';
+import { DECIMAL_RADIX, MAX_SCALE_VALUE, MIN_SCALE_VALUE, SCALE_STEP } from '../../../shared/const.js';
+import { setTransformProperty, validate } from '../../../shared/utils.js';
 
 const predicateScaleControl = (target) =>
   target.classList.contains('scale__control--smaller') ||

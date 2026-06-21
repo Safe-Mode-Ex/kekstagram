@@ -1,5 +1,5 @@
-import { initializeModal } from '../shared/modal';
-import { uploadImageCreator } from './creator/creator';
+import { initializeModal } from '../shared/modal.js';
+import { uploadImageCreator } from './creator/creator.js';
 
 const createUpload = (photoCardsContainerEl) => {
   const imgUploadFormEl = photoCardsContainerEl.querySelector('.img-upload__form');

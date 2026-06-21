@@ -1,10 +1,10 @@
-import { render } from '../core/render';
-import { createDataErrorElement, createPhotoCardElement } from '../core/template';
-import { cleanError } from '../shared/utils';
-import { getData } from '../shared/api';
-import { initializeModal } from '../shared/modal';
-import { populateDetailsCreator } from './details/details';
-import { initializeFilter } from './filter/filter';
+import { render } from '../core/render.js';
+import { createDataErrorElement, createPhotoCardElement } from '../core/template.js';
+import { cleanError } from '../shared/utils.js';
+import { getData } from '../shared/api.js';
+import { initializeModal } from '../shared/modal.js';
+import { populateDetailsCreator } from './details/details.js';
+import { initializeFilter } from './filter/filter.js';
 
 const createGallery = (photoCardsContainerEl) => {
   const bigPictureEl = document.querySelector('.big-picture');
