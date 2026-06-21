@@ -5,6 +5,7 @@ import { effectMap, sliderInitialOptions } from '../config.js';
 const setupEffects = (imgUploadOverlayEl, imgUploadPreviewImageEl) => {
   const effectsListEl = imgUploadOverlayEl.querySelector('.effects__list');
   const effectLevelEl = imgUploadOverlayEl.querySelector('.effect-level');
+  const effectLevelValueEl = imgUploadOverlayEl.querySelector('.effect-level__value');
   const effectLevelSliderEl = imgUploadOverlayEl.querySelector('.effect-level__slider');
   const predicateEffectTarget = (target) => target.name === 'effect';
 
@@ -40,7 +41,7 @@ const setupEffects = (imgUploadOverlayEl, imgUploadPreviewImageEl) => {
         const filter = imgUploadPreviewImageEl.style.filter;
         const filterValue = evt[0];
 
-        effectLevelEl.value = filterValue;
+        effectLevelValueEl.value = filterValue;
         setFilterProperty(imgUploadPreviewImageEl, filter.replace(NUMBER_REGEXP, filterValue));
       });
 
