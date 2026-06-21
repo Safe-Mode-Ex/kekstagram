@@ -71,10 +71,6 @@ const cleanError = () => {
   }, ERROR_TIMEOUT);
 };
 
-const notificationState = {
-  isOpen: false,
-};
-
 const debounce = (callback, timeoutDelay = DEFAULT_DEBOUNCE_TIME) => {
   let timeoutId;
 
@@ -110,7 +106,6 @@ export {
   setElementVisibility,
   isElementVisible,
   cleanError,
-  notificationState,
   debounce,
   throttle,
 };

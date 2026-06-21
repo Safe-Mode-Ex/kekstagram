@@ -1,4 +1,5 @@
-import { isEscapeKey, notificationState } from '../shared/utils.js';
+import { closeNotification, openNotification } from '../shared/notification.js';
+import { isEscapeKey } from '../shared/utils.js';
 
 const photoCardTemplateEl = document.querySelector('#picture')
   .content.querySelector('.picture');
@@ -54,7 +55,7 @@ const createResponseElement = (isSuccess = true) => {
 
   const removeElement = (currentTarget) => {
     element.remove();
-    notificationState.isOpen = false;
+    closeNotification();
     currentTarget.removeEventListener('click', onElementClick);
     document.removeEventListener('keydown', onEscKeydown);
   };
@@ -76,8 +77,7 @@ const createResponseElement = (isSuccess = true) => {
 
   element.addEventListener('click', onElementClick);
   document.addEventListener('keydown', onEscKeydown);
-  notificationState.isOpen = true;
-
+  openNotification();
 
   return element;
 };

@@ -1,5 +1,12 @@
 import { CLASS_MODAL_OPEN } from './const.js';
-import { isElementVisible, isEscapeKey, isFormFieldFocused, notificationState, setElementVisibility, validate } from './utils.js';
+import { isNotificationOpen } from './notification.js';
+import {
+  isElementVisible,
+  isEscapeKey,
+  isFormFieldFocused,
+  setElementVisibility,
+  validate
+} from './utils.js';
 
 const initializeModal = ({eventName, triggerEl, modalEl, predicate, modalOpenCb}) => {
   const onModalOpen = (evt) => {
@@ -32,7 +39,9 @@ const initializeModal = ({eventName, triggerEl, modalEl, predicate, modalOpenCb}
     }
 
     function onModalCloseKeyDown (closeEvt) {
-      if (isEscapeKey(closeEvt) && !isFormFieldFocused(closeEvt) && !notificationState.isOpen) {
+      if (isEscapeKey(closeEvt) &&
+          !isFormFieldFocused(closeEvt) &&
+          !isNotificationOpen()) {
         closeModal();
       }
     }
