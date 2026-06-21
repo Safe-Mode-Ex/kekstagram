@@ -18,7 +18,7 @@ const setupValidation = (imgUploadFormEl) => {
     }, `Количество хэштегов не может быть больше ${HASH_TAGS_MAX_COUNT}`);
 
     instance.addValidator(hashTagInputEl, (value) => {
-      const hashTags = value.split(' ');
+      const hashTags = value.split(' ').map((tag) => tag.toLowerCase());
       return !value || new Set(hashTags).size === hashTags.length;
     }, 'Хэштеги повторяются');
 
