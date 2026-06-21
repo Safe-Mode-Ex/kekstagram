@@ -30,15 +30,18 @@ const createCommentElement = ({name, avatar, message}) => {
   const commentEl = document.createElement('li');
   commentEl.classList.add('social__comment');
 
-  commentEl.innerHTML = `
-    <img
-      class="social__picture"
-      src="${avatar}"
-      alt="${name}"
-      width="35" height="35"
-    >
-    <p class="social__text">${message}</p>
-`;
+  const avatarEl = document.createElement('img');
+  avatarEl.classList.add('social__picture');
+  avatarEl.src = avatar;
+  avatarEl.alt = name;
+  avatarEl.width = 35;
+  avatarEl.height = 35;
+
+  const textEl = document.createElement('p');
+  textEl.classList.add('social__text');
+  textEl.textContent = message;
+
+  commentEl.append(avatarEl, textEl);
   return commentEl;
 };
 
